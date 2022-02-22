@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Default route bawaan create project laravel
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route view
+Route::view('/home', 'viewName');
+
+// Route redirect
+Route::redirect('/lama', '/baru', 301);
+
+// Route parameter
+Route::get('/user/{id}', function ($id) {
+    return 'User ID: ' . $id;
+});
+
+// Route with optional parameter
+Route::get('/user/{id?}', function ($id = null) {
+    return 'User ID: ' . $id;
+});
+
+// Route with required parameter and controller laravel 8
+Route::get('/user/{id}', [UserController::class, 'show']);
